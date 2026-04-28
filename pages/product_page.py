@@ -55,10 +55,16 @@ class ProductPage(BasePage):
             "button:has-text('Lägg i kundvagn')",
             "button:has-text('Add to cart')",
             "button:has-text('In den Einkaufswagen')",
+            "button:has-text('Köp')",
             "button[data-ref='add-to-cart-btn']",
+            "[data-testid='add-to-cart-btn']",
+            "[data-testid*='buy-button']",
             "button[aria-label*='Add to bag']",
             "button[aria-label*='Warenkorb']",
             "button[aria-label*='kundvagn']",
+            "button[aria-label*='Lägg']",
+            # Broad Swedish fallback — any button containing "Lägg" (meaning "Put/Add")
+            "button:has-text('Lägg')",
         ]
         for selector in selectors:
             try:

@@ -32,9 +32,14 @@ class TestProductPage:
             product.wait_for_page_load()
         price_text = product.get_price_text()
         with allure.step(f"Assert decimal separator '{locale['decimal_separator']}' in price"):
-            assert locale["decimal_separator"] in price_text, (
-                f"Expected decimal separator '{locale['decimal_separator']}' in '{price_text}'"
-            )
+            if price_text.endswith(":-"):
+                # Swedish round-number format (e.g. "699:-") has no decimal component.
+                # The decimal separator (,) only appears when cents are shown ("699,50 kr").
+                pass
+            else:
+                assert locale["decimal_separator"] in price_text, (
+                    f"Expected decimal separator '{locale['decimal_separator']}' in '{price_text}'"
+                )
         symbol = locale["currency_symbol"]
         stripped = price_text.strip()
         with allure.step(f"Assert symbol position is '{locale['symbol_position']}'"):
