@@ -3,7 +3,6 @@
     "base_url": "https://www.ikea.com/de/de",
     "billy_url": "https://www.ikea.com/de/de/p/billy-buecherregal-weiss-00263850/",
     "search_url": "https://www.ikea.com/de/de/search/?q=sofa",
-    "high_price_url": "https://www.ikea.com/de/de/p/soederhamn-3er-sofa-mit-recamiere-fridtuna-dunkelblau-s69306522/",
     "currency_symbol": "€",
     "symbol_position": "trailing",
     "decimal_separator": ".",
@@ -18,7 +17,6 @@
     "base_url": "https://www.ikea.com/us/en",
     "billy_url": "https://www.ikea.com/us/en/p/billy-bookcase-white-20522046/",
     "search_url": "https://www.ikea.com/us/en/search/?q=sofa",
-    "high_price_url": "https://www.ikea.com/us/en/p/soederhamn-sectional-3-seat-w-chaise-fridtuna-dark-blue-s59306516/",
     "currency_symbol": "$",
     "symbol_position": "leading",
     "decimal_separator": ".",
@@ -33,7 +31,7 @@
     "base_url": "https://www.ikea.com/se/sv/",
     "billy_url": "https://www.ikea.com/se/sv/p/billy-bokhylla-vit-00263850/",
     "search_url": "https://www.ikea.com/se/sv/search/?q=soffa",
-    "high_price_url": "https://www.ikea.com/se/sv/p/brimnes-sengeram-med-opbevaring-vit-s49126406/",
+    "high_price_url": "https://www.ikea.com/se/sv/p/kallax-hyllsystem-vit-00278171/",
     "currency_symbol": "kr",
     "symbol_position": "trailing",
     "decimal_separator": ",",
@@ -42,6 +40,6 @@
     "html_lang": "sv-SE",
     "add_to_cart_text": "Lägg i kundvagn",
     "nav_item": "Produkter",
-    "cookie_accept_text": "Tillåt alla"
+    "cookie_accept_text": "Acceptera cookies"
   }
 }

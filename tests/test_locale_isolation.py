@@ -42,15 +42,18 @@ class TestLocaleIsolation:
     @allure.story("Navigation language contamination")
     def test_wrong_nav_language_absent(self, page, locale):
         """TC-NL-03: Navigation must not contain any other locale's nav item text."""
+        # Collect all nav link texts and compare with exact equality.
+        # Playwright's has-text() is a substring match, so "Produkte" would
+        # incorrectly match "Produkter" — we need exact string comparison here.
+        nav_texts = [t.strip() for t in page.locator("nav a").all_text_contents()]
         for other_key, other_config in ALL_LOCALES.items():
             if other_key == locale["key"]:
                 continue
             wrong_nav = other_config["nav_item"]
-            wrong_locator = page.locator(f"nav a:has-text('{wrong_nav}')")
             with allure.step(f"Assert nav link '{wrong_nav}' ({other_key}) is absent"):
-                assert wrong_locator.count() == 0, (
+                assert wrong_nav not in nav_texts, (
                     f"Locale '{locale['key']}': found {other_key} nav text "
-                    f"'{wrong_nav}' in navigation"
+                    f"'{wrong_nav}' in navigation links: {nav_texts}"
                 )
 
     @allure.story("HTML lang contamination")
