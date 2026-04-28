@@ -53,6 +53,7 @@ class ProductPage(BasePage):
             "button:has-text('Add to bag')",
             "button:has-text('In den Warenkorb')",
             "button:has-text('Lägg i kundvagn')",
+            "button:has-text('Lägg i varukorg')",
             "button:has-text('Add to cart')",
             "button:has-text('In den Einkaufswagen')",
             "button:has-text('Köp')",
