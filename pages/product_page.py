@@ -2,29 +2,11 @@ import re
 
 import allure
 
-from pages.base_page import BasePage
+from pages.base_page import BasePage, _extract_price_line
 
 # IKEA's Skapa design system stamps data-skapa on its components.
 # The price module always starts with "price-module@" regardless of version number.
 _PRICE_MODULE = "[data-skapa^='price-module']"
-
-# A price line starts with a currency symbol (leading) or ends with one (trailing),
-# contains at least one digit, is short enough to exclude product descriptions,
-# and must NOT start with a label word like "Price" / "Preis" (sr-only duplicate text).
-_PRICE_LINE_RE = re.compile(r'(?:^[$€£¥]|[$€£¥]$)')
-_PRICE_LABEL_RE = re.compile(r'^(Price|Preis)\b', re.IGNORECASE)
-
-
-def _extract_price_line(inner_text: str) -> str | None:
-    for line in inner_text.split('\n'):
-        line = line.strip()
-        if (line
-                and _PRICE_LINE_RE.search(line)
-                and re.search(r'\d', line)
-                and len(line) < 20
-                and not _PRICE_LABEL_RE.match(line)):
-            return line
-    return None
 
 
 class ProductPage(BasePage):
@@ -43,12 +25,13 @@ class ProductPage(BasePage):
 
     @allure.step("Extract currency symbol from price text")
     def get_currency_symbol(self, price_text: str) -> str:
-        return re.sub(r'[\d\s.,\u00a0\u202f]', '', price_text).strip()
+        # Strip digits, whitespace variants, decimal/thousands separators — leaves the symbol.
+        return re.sub(r'[\d\s.,  ]', '', price_text).strip()
 
     @allure.step("Get dimension unit from product page")
     def get_dimension_unit(self) -> str:
         # The product subtitle inside the price module contains dimensions,
-        # e.g. "80x28x202 cm" (DE) or "31 1/2x11x79 1/2 \"" (US).
+        # e.g. "80x28x202 cm" (DE/SE) or "31 1/2x11x79 1/2 \"" (US).
         loc = self.page.locator(_PRICE_MODULE).first
         loc.wait_for(state="visible", timeout=10000)
         text = loc.inner_text()
@@ -69,11 +52,20 @@ class ProductPage(BasePage):
         selectors = [
             "button:has-text('Add to bag')",
             "button:has-text('In den Warenkorb')",
+            "button:has-text('Lägg i kundvagn')",
+            "button:has-text('Lägg i varukorg')",
             "button:has-text('Add to cart')",
             "button:has-text('In den Einkaufswagen')",
+            "button:has-text('Köp')",
             "button[data-ref='add-to-cart-btn']",
+            "[data-testid='add-to-cart-btn']",
+            "[data-testid*='buy-button']",
             "button[aria-label*='Add to bag']",
             "button[aria-label*='Warenkorb']",
+            "button[aria-label*='kundvagn']",
+            "button[aria-label*='Lägg']",
+            # Broad Swedish fallback — any button containing "Lägg" (meaning "Put/Add")
+            "button:has-text('Lägg')",
         ]
         for selector in selectors:
             try:

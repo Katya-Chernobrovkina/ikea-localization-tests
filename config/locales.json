@@ -26,5 +26,19 @@
     "add_to_cart_text": "Add to bag",
     "nav_item": "Products",
     "cookie_accept_text": "Ok"
+  },
+  "se": {
+    "base_url": "https://www.ikea.com/se/sv/",
+    "billy_url": "https://www.ikea.com/se/sv/p/billy-bokhylla-vit-00263850/",
+    "search_url": "https://www.ikea.com/se/sv/search/?q=soffa",
+    "currency_symbol": ":-",
+    "symbol_position": "trailing",
+    "decimal_separator": ",",
+    "thousands_separator": " ",
+    "unit": "cm",
+    "html_lang": "sv-SE",
+    "add_to_cart_text": "Lägg i varukorg",
+    "nav_item": "Produkter",
+    "cookie_accept_text": "Acceptera cookies"
   }
 }

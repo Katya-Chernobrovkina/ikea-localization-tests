@@ -1,24 +1,6 @@
-import re
-
 import allure
 
-from pages.base_page import BasePage
-
-# Reuse the same price-line extraction logic as the product page
-_PRICE_LINE_RE = re.compile(r'(?:^[$€£¥]|[$€£¥]$)')
-_PRICE_LABEL_RE = re.compile(r'^(Price|Preis|Regular|Sale|Save)\b', re.IGNORECASE)
-
-
-def _extract_price_line(inner_text: str) -> str | None:
-    for line in inner_text.split('\n'):
-        line = line.strip()
-        if (line
-                and _PRICE_LINE_RE.search(line)
-                and re.search(r'\d', line)
-                and len(line) < 20
-                and not _PRICE_LABEL_RE.match(line)):
-            return line
-    return None
+from pages.base_page import BasePage, _extract_price_line
 
 
 class SearchResultsPage(BasePage):
