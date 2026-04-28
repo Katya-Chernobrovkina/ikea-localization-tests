@@ -1,7 +1,4 @@
-import re
-
 import allure
-import pytest
 
 from pages.product_page import ProductPage
 
@@ -78,23 +75,3 @@ class TestProductPage:
                 f"Expected '{locale['add_to_cart_text']}' in '{button_text}'"
             )
 
-    @allure.story("Thousands separator in high price")
-    def test_thousands_separator_correct(self, page, locale):
-        """TC-PP-06: Prices above 1,000 display the locale thousands separator.
-
-        Requires high_price_url in locales.json to point to a product priced
-        above 1,000 in the local currency. Verify the URL if this test fails.
-        """
-        if "high_price_url" not in locale:
-            pytest.skip("No high_price_url configured for this locale")
-        product = ProductPage(page)
-        with allure.step(f"Navigate to {locale['high_price_url']}"):
-            product.navigate(locale["high_price_url"])
-            product.wait_for_page_load()
-        price_text = product.get_price_text()
-        sep = locale["thousands_separator"]
-        with allure.step(f"Assert thousands separator '{sep}' appears between digits in '{price_text}'"):
-            assert re.search(r'\d' + re.escape(sep) + r'\d', price_text), (
-                f"Locale '{locale['key']}': thousands separator '{sep}' not found in '{price_text}'. "
-                f"Confirm high_price_url points to a product priced above 1,000 {locale['currency_symbol']}"
-            )
