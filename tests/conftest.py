@@ -16,7 +16,7 @@ def pytest_configure(config):
     config.addinivalue_line("markers", "no_autouse_cookies: skip automatic cookie acceptance for this test")
 
 
-@pytest.fixture(params=["de", "us"])
+@pytest.fixture(params=["de", "us", "se"])
 def locale(request):
     """Yields the locale config dict for each parametrized locale."""
     return {"key": request.param, **ALL_LOCALES[request.param]}
