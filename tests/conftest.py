@@ -1,4 +1,5 @@
 import json
+import os
 import allure
 import pytest
 from pathlib import Path
@@ -24,7 +25,8 @@ def locale(request):
 @pytest.fixture(scope="session")
 def browser():
     with sync_playwright() as pw:
-        browser = pw.chromium.launch(headless=False)
+        headless = os.getenv("CI", "false").lower() == "true"
+        browser = pw.chromium.launch(headless=headless)
         yield browser
         browser.close()
 
