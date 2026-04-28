@@ -1,0 +1,30 @@
+{
+  "de": {
+    "base_url": "https://www.ikea.com/de/de",
+    "billy_url": "https://www.ikea.com/de/de/p/billy-buecherregal-weiss-00263850/",
+    "search_url": "https://www.ikea.com/de/de/search/?q=sofa",
+    "currency_symbol": "€",
+    "symbol_position": "trailing",
+    "decimal_separator": ".",
+    "thousands_separator": ",",
+    "unit": "cm",
+    "html_lang": "de-DE",
+    "add_to_cart_text": "In den Warenkorb",
+    "nav_item": "Produkte",
+    "cookie_accept_text": "Alle Cookies akzeptieren"
+  },
+  "us": {
+    "base_url": "https://www.ikea.com/us/en",
+    "billy_url": "https://www.ikea.com/us/en/p/billy-bookcase-white-20522046/",
+    "search_url": "https://www.ikea.com/us/en/search/?q=sofa",
+    "currency_symbol": "$",
+    "symbol_position": "leading",
+    "decimal_separator": ".",
+    "thousands_separator": ",",
+    "unit": "in",
+    "html_lang": "en-US",
+    "add_to_cart_text": "Add to bag",
+    "nav_item": "Products",
+    "cookie_accept_text": "Ok"
+  }
+}

@@ -1,0 +1,23 @@
+# Virtual environment
+.venv/
+
+# Allure raw artifacts (generated at runtime)
+allure-results/
+allure-report/
+allure-history/
+
+# Pytest cache
+.pytest_cache/
+
+# Python bytecode
+__pycache__/
+*.pyc
+*.pyo
+
+# IDE
+.idea/
+.vscode/
+
+# OS
+.DS_Store
+Thumbs.db
